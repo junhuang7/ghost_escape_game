@@ -35793,7 +35793,7 @@ MonoBehaviour:
   - {fileID: 1266370379}
   - {fileID: 1446791114}
   - {fileID: 151600013}
-  detectionDistance: 0.5
+  detectionDistance: 1
 --- !u!4 &1084066201
 Transform:
   m_ObjectHideFlags: 0
