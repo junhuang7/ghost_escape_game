@@ -9,7 +9,6 @@ public class CubeSequenceChecker : MonoBehaviour
     public GameObject[] cubes;
     public float detectionDistance = 2.0f;
     public TextMeshProUGUI hintText; // Assign this in the inspector
-    public DoorController doorController; // Assign your DoorController script in the inspector
 
     private int[] targetSequence = { 6, 4, 5, 7 };
     private List<int> visitedSequence = new List<int>();
@@ -27,7 +26,7 @@ public class CubeSequenceChecker : MonoBehaviour
             CreateNumberOnCube(i);
         }
 
-        ShowHint("Welcome, 10 boxes in the room, figure out what boxes are important for solving the puzzle", 5f);
+        ShowHint("Welcome, 10 boxes in the room, figure out what boxes are important for solving the puzzle", 3f);
 
         // Center the hintText in the screen
         RectTransform rt = hintText.GetComponent<RectTransform>();
@@ -49,26 +48,21 @@ public class CubeSequenceChecker : MonoBehaviour
 
                     if (!visitedSequence.Contains(i))
                         visitedSequence.Add(i);
-
+                    
                     if (visitedSequence.Count >= 4 && CheckSequence())
                     {
                         ChangeColorOfSequenceCubes(Color.green);
                         StartCoroutine(ChangeAllCubesToGreenAfterDelay(10f));
                         visitedSequence.Clear();
-                        if (doorController != null)
-                        {
-                            doorController.OpenDoor();
-                        }
-                        else
-                        {
-                            Debug.LogError("Door Controller not assigned!");
-                        }
+                        //Door Open Mechanism
+                        DoorOpenController.ToggleDoor();
+
                     }
                 }
             }
         }
 
-        if (Time.time - startTime > 60f && hintText.text == "") // After 1 minute, show the second hint
+        if (Time.time - startTime > 30f && hintText.text == "") // After 1 minute, show the second hint
         {
             ShowHint("Now you might have noticed that four boxes are related to the game, now please visit them again in a sequence. Think about the course code of video game design, it is CS-6 what?", 5f);
         }
@@ -123,7 +117,7 @@ public class CubeSequenceChecker : MonoBehaviour
         if (visitedSequence.Count >= 4)
         {
             int count = visitedSequence.Count;
-            return visitedSequence[count - 4] == targetSequence[0]
+            return visitedSequence[count - 4] == targetSequence[0] 
                 && visitedSequence[count - 3] == targetSequence[1]
                 && visitedSequence[count - 2] == targetSequence[2]
                 && visitedSequence[count - 1] == targetSequence[3];
@@ -137,20 +131,23 @@ public class CubeSequenceChecker : MonoBehaviour
         hintText.fontSize = 24; // Adjust as needed
 
         RectTransform rt = hintText.GetComponent<RectTransform>();
-
+        
         // Set the anchors to stretch horizontally
         rt.anchorMin = new Vector2(0, 0.5f);
         rt.anchorMax = new Vector2(1, 0.5f);
-
+        
         // Set the sizeDelta to adjust height
         rt.sizeDelta = new Vector2(rt.sizeDelta.x, 100); // You can adjust the height as needed
-
+        
+        
         // Optional: Add some padding
         rt.offsetMin = new Vector2(rt.offsetMin.x + 10, rt.offsetMin.y); // Left padding
         rt.offsetMax = new Vector2(rt.offsetMax.x - 10, rt.offsetMax.y); // Right padding
 
         StartCoroutine(ClearHintAfterDelay(duration));
     }
+
+
 
     private IEnumerator ClearHintAfterDelay(float delay)
     {
