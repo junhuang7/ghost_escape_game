@@ -9,6 +9,9 @@ public class CubeSequenceChecker : MonoBehaviour
     public GameObject[] cubes;
     public float detectionDistance = 2.0f;
     public TextMeshProUGUI hintText; // Assign this in the inspector
+    public DoorOpenController doorOpenController; // Assign this in the inspector
+    private bool secondHintShown = false;
+
 
     private int[] targetSequence = { 6, 4, 5, 7 };
     private List<int> visitedSequence = new List<int>();
@@ -27,7 +30,7 @@ public class CubeSequenceChecker : MonoBehaviour
         }
 
         ShowHint("Welcome, 10 boxes in the room, figure out what boxes are important for solving the puzzle", 3f);
-
+        
         // Center the hintText in the screen
         RectTransform rt = hintText.GetComponent<RectTransform>();
         rt.anchorMin = new Vector2(0.5f, 0.5f);
@@ -54,17 +57,24 @@ public class CubeSequenceChecker : MonoBehaviour
                         ChangeColorOfSequenceCubes(Color.green);
                         StartCoroutine(ChangeAllCubesToGreenAfterDelay(10f));
                         visitedSequence.Clear();
-                        //Door Open Mechanism
-                        DoorOpenController.ToggleDoor();
-
+                        // Door Open Mechanism
+                        if (doorOpenController != null)
+                        {
+                            doorOpenController.ToggleDoor();
+                        }
+                        else
+                        {
+                            Debug.LogError("DoorOpenController not assigned!");
+                        }                        
                     }
                 }
             }
         }
 
-        if (Time.time - startTime > 30f && hintText.text == "") // After 1 minute, show the second hint
+        if (Time.time - startTime > 30f && hintText.text == "" && !secondHintShown) // After 1 minute, show the second hint
         {
             ShowHint("Now you might have noticed that four boxes are related to the game, now please visit them again in a sequence. Think about the course code of video game design, it is CS-6 what?", 5f);
+            secondHintShown = true; // Set the flag to true so the hint won't be shown again
         }
     }
 
@@ -72,7 +82,7 @@ public class CubeSequenceChecker : MonoBehaviour
     {
         GameObject textObj = new GameObject($"CubeText{cubeIndex}");
         textObj.transform.SetParent(cubes[cubeIndex].transform);
-        textObj.transform.localPosition = new Vector3(0, 0.7f, 0);
+        textObj.transform.localPosition = new Vector3(0, 1.2f, 0);
         TextMeshPro textMeshPro = textObj.AddComponent<TextMeshPro>();
         textMeshPro.text = cubeIndex.ToString();
         textMeshPro.alignment = TextAlignmentOptions.Center;
@@ -146,8 +156,6 @@ public class CubeSequenceChecker : MonoBehaviour
 
         StartCoroutine(ClearHintAfterDelay(duration));
     }
-
-
 
     private IEnumerator ClearHintAfterDelay(float delay)
     {

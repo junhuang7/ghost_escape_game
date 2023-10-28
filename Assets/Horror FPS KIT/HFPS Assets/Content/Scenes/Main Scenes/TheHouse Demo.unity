@@ -11990,6 +11990,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b43519bd3bbd24b27a01025c69514ff1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  doorAnimator: {fileID: 0}
 --- !u!1001 &390502844
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15834,6 +15835,8 @@ GameObject:
   - component: {fileID: 560569970}
   - component: {fileID: 560569969}
   - component: {fileID: 560569968}
+  - component: {fileID: 560569974}
+  - component: {fileID: 560569973}
   m_Layer: 0
   m_Name: Door1
   m_TagString: Untagged
@@ -15919,6 +15922,34 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 560569966}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &560569973
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 560569966}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b35f79a2d3224c1c8f9bce26f485514, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!111 &560569974
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 560569966}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: bd96a15db77384e8c859dbc2ad0fa6c9, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: bd96a15db77384e8c859dbc2ad0fa6c9, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 0
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!1 &563339092
 GameObject:
   m_ObjectHideFlags: 0
@@ -31509,7 +31540,7 @@ MonoBehaviour:
   - {fileID: 151600013}
   detectionDistance: 1
   hintText: {fileID: 292874153}
-  doorController: {fileID: 0}
+  doorOpenController: {fileID: 560569973}
 --- !u!4 &1084066201
 Transform:
   m_ObjectHideFlags: 0
