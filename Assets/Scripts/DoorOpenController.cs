@@ -2,17 +2,12 @@ using UnityEngine;
 
 public class DoorOpenController : MonoBehaviour
 {
-    public CubeSequenceChecker cubeSequenceChecker;
-    public DoorController doorScript; // Replace DoorScriptType with the actual type of your door's script
-    
-    private bool doorOpened = false;
+    public Animator doorAnimator; // Assign this in the inspector
+    private bool isOpen = false;
 
-    private void Update()
+    public void ToggleDoor()
     {
-        if (!doorOpened && cubeSequenceChecker.CheckSequence())
-        {
-            doorScript.OpenDoor();
-            doorOpened = true;
-        }
+        isOpen = !isOpen;
+        doorAnimator.SetBool("isOpen", isOpen);
     }
 }
