@@ -1,7 +1,7 @@
 # Digimon game alpha
 
 
-## Scripting and Logic Implementation
+## Scripting and Logic Implementation by Abdulrahman Althobaiti (AA)
 
 - Create a new script named AIAgentChase Script can be found in Assets > Scripts 
 
@@ -27,5 +27,5 @@
 - After the sound completes, the agent is deactivated.
 
 
-## Moving HEROPLAYER Prediction
+## Moving HEROPLAYER Prediction by Abdulrahman Althobaiti (AA)
 - attached a VelocityReporter script to the HEROPLAYER, allowing to derive its velocity. Using this information, the Ghost predicts the future position of the HEROPLAYER based on its current position, velocity, and the time it would take for the Ghost to reach that predicted location. This prediction updates every frame, ensuring the Ghosy adjusts its course dynamically. Script can be found Assets > Script.
