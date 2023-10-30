@@ -1,129 +1,72 @@
-# Digimon game alpha
+# Digimon Game Alpha
 
+## Starting the Game
+- **Main Menu Scene**: Load the scene `MainMenu.unity` found in `Assets\Horror FPS KIT\HFPS Assets\Content\Scenes`. Click "Play New Game" to initialize the game.
+- **Main Game Scene**: Alternatively, you can directly load the main game scene `TheHouse Demo.unity` located at `Assets\Horror FPS KIT\HFPS Assets\Content\Scenes\Main Scene`.
 
-## Where to start the scene
-- Start scene file called MainMenu.unity can be found in Assets\Horror FPS KIT\HFPS Assets\Content\Scenes. When load the main menu, we can click play new Game to initialize the scene. Or the main scene file called TheHouse Demo.unity can be found and checked directly at  Assets\Horror FPS KIT\HFPS Assets\Content\Scenes\Main Scene.
-#How to play
-1. Control the heroplayer (Shortcut keys can be modified in the control section of the settings):
-- Move Up: W
-- Move Down: S
-- Move Left: A
-- Move Right: D
-- Run: Shift 
-- Jump: Space
-- Pause：Esc
-2. Solve the puzzle
+## How to Play
+### Player Controls
+- **Move Up**: W
+- **Move Down**: S
+- **Move Left**: A
+- **Move Right**: D
+- **Turn**: Mouse
+- **Run**: Shift
+- **Jump**: Space
+- **Pause**: Esc
 
-3. 
-## Scripting and Logic Implementation by Abdulrahman Althobaiti (AA)
+### Objectives
+1. Solve puzzles and navigate through the environment.
+2. Interact with objects to progress in the game.
 
-- Create a new script named AIAgentChase Script can be found in Assets > Scripts 
+## Game Mechanics and Scripting
 
-1. Initialization (Start method):
+### AI Agent Chase (by Abdulrahman Althobaiti - AA)
+- **Script Location**: `Assets\Scripts\AIAgentChase.cs`
+- **Functionality**: The AI agent initiates a chase sequence, following the HEROPLAYER. It checks proximity and deactivates upon catching the player, playing a sound effect.
 
-- Gets references for the required components.
-- Adds required components if not already attached.
-- Initiates the chase sequence after a 10-second delay.
+### HEROPLAYER Movement Prediction (by Abdulrahman Althobaiti - AA)
+- **Script Location**: `Assets\Scripts\VelocityReporter.cs` (attached to HEROPLAYER)
+- **Functionality**: Predicts the future position of the HEROPLAYER based on its current position and velocity, allowing the AI agent to adjust its course dynamically.
 
-2. Game Loop (Update method):
+### Pre-preparation for Escape Rooms and Door Opening Mechanism (by Zifeng Zhang - ZZ)
+- **Contributions**: 
+  - Created rooms for escape.
+  - Designed a 3D door model.
+  - Developed an Animator Controller and a door opening animation.
 
-- If the chase has begun, it invokes the method to move towards the HEROPLAYER.
-- Checks proximity to the HEROPLAYER. If close enough, it triggers the sound playback and subsequent agent deactivation.
+### Door Opening Mechanism (by Zifeng Zhang - ZZ)
+- **Script Location**: `Assets\Scripts\DoorOpenController.cs`
+- **Functionality**: Controls the opening of doors when certain conditions are met.
 
-3. Chase Mechanism (ChasePlayer method):
+### Cube Sequence Checker and Puzzle Logic (by Jun Huang - JH)
+- **Script Location**: `Assets\Scripts\CubeSequenceChecker.cs`
+1. **Cube Interaction and Sequence Checking**: 
+    - The game involves a series of cubes, each identifiable by a unique number.
+    - The player is required to interact with these cubes following a specific sequence: `6, 4, 5, 7`.
+    - When the player is within a certain distance (`detectionDistance`) from a cube, the script checks if the cube is part of the target sequence.
+    - Correct interactions temporarily change the cube's color to red, providing visual feedback.
+    - Upon successfully completing the sequence, all cubes in the target sequence change their color to green, serving as a success indicator.
 
-- Sets the AI agent's destination to the HEROPLAYER.
-- Updates an animation parameter to potentially reflect walking/running animation based on movement speed.
+2. **Dynamic Hints System**:
+    - The player is welcomed with an initial hint displayed on the screen: "Welcome, 10 boxes in the room, figure out what boxes are important for solving the puzzle". This message stays visible for 3 seconds.
+    - After 30 seconds, if the player has not progressed, a second hint appears: "Now you might have noticed that four boxes are related to the game, now please visit them again in a sequence. Think about the course code of video game design, it is CS-6 what?" This hint also remains visible for 5 seconds, guiding the player towards the puzzle solution.
+    - Hints are displayed centrally on the screen with an adjusted font size and with horizontal stretching to ensure readability.
 
-4. End Chase (DisappearAndPlaySound and DeactivateAfterSound methods):
+3. **Door Opening Mechanism Integration**:
+    - The script is directly connected to a `DoorOpenController` (presumably implemented by Zifeng Zhang - ZZ).
+    - Once the player completes the cube sequence correctly, the linked door is triggered to open, indicating the puzzle's successful completion.
 
-- Upon reaching the target, the chase sound is played.
-- After the sound completes, the agent is deactivated.
+4. **Code Quality and Structure**:
+    - The script is well-structured with separate methods handling specific functionalities, such as `ChangeColorTemporarily`, `ShowHint`, and `CheckSequence`.
+    - Extensive use of Coroutines allows for timed events and animations, contributing to the dynamic nature of the puzzle and improving player experience.
+    - The code includes error handling and validations, ensuring robustness.
 
+- **Usage**: Attach this script to an empty GameObject and assign the `HEROPLAYER`, cube array, `hintText`, and `doorOpenController` in the inspector.
 
-## Moving HEROPLAYER Prediction by Abdulrahman Althobaiti (AA)
-- attached a VelocityReporter script to the HEROPLAYER, allowing to derive its velocity. Using this information, the Ghost predicts the future position of the HEROPLAYER based on its current position, velocity, and the time it would take for the Ghost to reach that predicted location. This prediction updates every frame, ensuring the Ghosy adjusts its course dynamically. Script can be found Assets > Script.
+## Contact and Credits
+- Abdulrahman Althobaiti (AA) - Author of the AI Agent Chase and HEROPLAYER Movement Prediction 
+- Zifeng Zhang (ZZ) - Author of the Escape Rooms and Door Opening Mechanism
+- Jun Huang (JH) - Author of the Cube Sequence Checker and Puzzle Logic
 
-
-## Pre-preparation by Zifeng Zhang (ZZ)
-- Create rooms for escape； Creat a 3D door model; Make an Animator Controller; Design a door open animation inside the Animator.
-
-## Scripting and Logic Implementation by Zifeng Zhang (ZZ)
-- Create a new script named DoorOpenController can be found in Assets > Scripts 
-1. Declare Variables:
-
--Create two private variables: isDoorOpen (to track if the door is open) and doorAnimation (to hold the Animation component).
-Start Method:
-
-2. In the Start() method:
--Get the Animation component attached to the GameObject.
--Check if the doorAnimation or the "Door_Open" animation clip is missing and log errors if so.
-3. ToggleDoor Method:
--A public method called ToggleDoor() is defined:
--It checks if the door is closed (isDoorOpen is false).
--If the door is closed, it plays the "Door_Open" animation if doorAnimation is not null.
--Sets isDoorOpen to true to indicate that the door is open.# Digimon game alpha
-
-
-## Where to start the scene
-- Start scene file called MainMenu.unity can be found in Assets\Horror FPS KIT\HFPS Assets\Content\Scenes. When load the main menu, we can click play new Game to initialize the scene. Or the main scene file called TheHouse Demo.unity can be found and checked directly at  Assets\Horror FPS KIT\HFPS Assets\Content\Scenes\Main Scene.
-#How to play
-1. Control the heroplayer (Shortcut keys can be modified in the control section of the settings):
-- Move Up: W
-- Move Down: S
-- Move Left: A
-- Move Right: D
-- Run: Shift 
-- Jump: Space
-- Pause：Esc
-2. Solve the puzzle
-
-3. 
-## Scripting and Logic Implementation by Abdulrahman Althobaiti (AA)
-
-- Create a new script named AIAgentChase Script can be found in Assets > Scripts 
-
-1. Initialization (Start method):
-
-- Gets references for the required components.
-- Adds required components if not already attached.
-- Initiates the chase sequence after a 10-second delay.
-
-2. Game Loop (Update method):
-
-- If the chase has begun, it invokes the method to move towards the HEROPLAYER.
-- Checks proximity to the HEROPLAYER. If close enough, it triggers the sound playback and subsequent agent deactivation.
-
-3. Chase Mechanism (ChasePlayer method):
-
-- Sets the AI agent's destination to the HEROPLAYER.
-- Updates an animation parameter to potentially reflect walking/running animation based on movement speed.
-
-4. End Chase (DisappearAndPlaySound and DeactivateAfterSound methods):
-
-- Upon reaching the target, the chase sound is played.
-- After the sound completes, the agent is deactivated.
-
-
-## Moving HEROPLAYER Prediction by Abdulrahman Althobaiti (AA)
-- attached a VelocityReporter script to the HEROPLAYER, allowing to derive its velocity. Using this information, the Ghost predicts the future position of the HEROPLAYER based on its current position, velocity, and the time it would take for the Ghost to reach that predicted location. This prediction updates every frame, ensuring the Ghosy adjusts its course dynamically. Script can be found Assets > Script.
-
-
-## Pre-preparation by Zifeng Zhang (ZZ)
-- Create rooms for escape； Creat a 3D door model; Make an Animator Controller; Design a door open animation inside the Animator.
-
-## Scripting and Logic Implementation by Zifeng Zhang (ZZ)
-- Create a new script named DoorOpenController can be found in Assets > Scripts 
-1. Declare Variables:
-
--Create two private variables: isDoorOpen (to track if the door is open) and doorAnimation (to hold the Animation component).
-Start Method:
-
-2. In the Start() method:
--Get the Animation component attached to the GameObject.
--Check if the doorAnimation or the "Door_Open" animation clip is missing and log errors if so.
-3. ToggleDoor Method:
--A public method called ToggleDoor() is defined:
--It checks if the door is closed (isDoorOpen is false).
--If the door is closed, it plays the "Door_Open" animation if doorAnimation is not null.
--Sets isDoorOpen to true to indicate that the door is open.
+Thank you for playing Digimon Game Alpha!
