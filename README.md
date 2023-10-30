@@ -71,6 +71,10 @@
 
 Thank you for playing Ghost Escape: Haunted Mansion game alpha presented by team Digimon!
 
+## Known problems
+- The wall will sometimes disappear, will try to address later, one solution is to build new walls for the game.
+- Some problems with the puzzle logic, if some random visits to the key cubes is ahead of the 6-4-5-7 sequence visit, sometimes the door open mechanims will not be functional. However, a straight visit of 6-4-5-7 sequence from game onset will trigger the door open mechanism for sure, will try to address this issue later.
+
 ## References
 
 1. https://assetstore.unity.com/packages/templates/systems/horror-fps-kit-82643
