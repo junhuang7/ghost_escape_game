@@ -2,7 +2,7 @@
 
 ## Starting the Game
 - **Main Menu Scene**: Load the scene `MainMenu.unity` found in `Assets\Horror FPS KIT\HFPS Assets\Content\Scenes`. Click "Play New Game" to initialize the game.
-- **Main Game Scene**: Alternatively, you can directly load the main game scene `TheHouse Demo.unity` located at `Assets\Horror FPS KIT\HFPS Assets\Content\Scenes\Main Scene`.
+- **Main Game Scene**: Alternatively, you can directly load the main game scene `TheHouse Demo.unity` located at `Assets\Horror FPS KIT\HFPS Assets\Content\Scenes\Main Scene`[^1].
 
 ## How to Play
 ### Player Controls
@@ -23,13 +23,13 @@
 
 ### AI Agent Chase (by Abdulrahman Althobaiti - AA)
 - **Script Location**: `Assets\Scripts\AIAgentChase.cs`
-- **Functionality**: The AI agent initiates a chase sequence, following the HEROPLAYER. It checks proximity and deactivates upon catching the player, playing a sound effect.
+- **Functionality**: The AI agent initiates a chase sequence, following the HEROPLAYER. It checks proximity and deactivates upon catching the player, playing a sound effect. The AI agent is a ghost purchased from Unity Store [^2], but the code controlling the AI agent is original work from AA.
 
 ### HEROPLAYER Movement Prediction (by Abdulrahman Althobaiti - AA)
 - **Script Location**: `Assets\Scripts\VelocityReporter.cs` (attached to HEROPLAYER)
 - **Functionality**: Predicts the future position of the HEROPLAYER based on its current position and velocity, allowing the AI agent to adjust its course dynamically.
 
-### Pre-preparation for Escape Rooms and Door Opening Mechanism (by Zifeng Zhang - ZZ)
+### Preparation for Escape Rooms and Door Opening Mechanism (by Zifeng Zhang - ZZ)
 - **Contributions**: 
   - Created rooms for escape.
   - Designed a 3D door model.
@@ -70,3 +70,10 @@
 - Jun Huang (JH) - Author of the Cube Sequence Checker and Puzzle Logic
 
 Thank you for playing Ghost Escape: Haunted Mansion game alpha presented by team Digimon!
+
+## References
+
+1. https://assetstore.unity.com/packages/templates/systems/horror-fps-kit-82643
+2. https://assetstore.unity.com/packages/3d/characters/creatures/ghost-low-poly-199498
+
+It is important to note that our project's scope does not involve incorporating the storyline provided in the horror kit. Instead, our intention is to solely leverage the assets such as rooms, lighting, carpets, and other elements. We are committed to developing our own set of game rules by extensively coding them ourselves. Furthermore, we created custom animations and introduced numerous new elements to the project.
