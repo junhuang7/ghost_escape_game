@@ -1,4 +1,4 @@
-# Digimon Game Alpha
+# Digimon_Ghost Escape: Haunted Mansion_Game Alpha
 
 ## Starting the Game
 - **Main Menu Scene**: Load the scene `MainMenu.unity` found in `Assets\Horror FPS KIT\HFPS Assets\Content\Scenes`. Click "Play New Game" to initialize the game.
@@ -69,4 +69,4 @@
 - Zifeng Zhang (ZZ) - Author of the Escape Rooms and Door Opening Mechanism
 - Jun Huang (JH) - Author of the Cube Sequence Checker and Puzzle Logic
 
-Thank you for playing Digimon Game Alpha!
+Thank you for playing Ghost Escape: Haunted Mansion game alpha presented by team Digimon!
