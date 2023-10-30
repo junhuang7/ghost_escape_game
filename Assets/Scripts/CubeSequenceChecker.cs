@@ -83,12 +83,18 @@ public class CubeSequenceChecker : MonoBehaviour
         GameObject textObj = new GameObject($"CubeText{cubeIndex}");
         textObj.transform.SetParent(cubes[cubeIndex].transform);
         textObj.transform.localPosition = new Vector3(0, 1.2f, 0);
+        
         TextMeshPro textMeshPro = textObj.AddComponent<TextMeshPro>();
         textMeshPro.text = cubeIndex.ToString();
         textMeshPro.alignment = TextAlignmentOptions.Center;
         textMeshPro.fontSize = 10; // Adjust as needed
         textMeshPro.color = Color.black;
         textMeshPro.GetComponent<RectTransform>().sizeDelta = new Vector2(2, 2); // Adjust as needed
+        
+        if (cubeIndex >= 5 && cubeIndex <= 9)
+        {
+            textObj.transform.Rotate(0, 180, 0); // Rotate the text 180 degrees around the y-axis
+        }
     }
 
     private void ChangeColorTemporarily(int cubeIndex, Color color, float duration)
