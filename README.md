@@ -37,7 +37,21 @@
 
 ### Door Opening Mechanism (by Zifeng Zhang - ZZ)
 - **Script Location**: `Assets\Scripts\DoorOpenController.cs`
-- **Functionality**: Controls the opening of doors when certain conditions are met.
+- **Functionality**: This script controls door interactions, leveraging Unity's Animation component.
+
+#### Overview:
+- **Initialization**: On start, it checks for an Animation component and a "Door_Open" animation clip.
+  - Missing Animation component logs: "Animation component is missing!"
+  - Missing animation clip logs: "Animation clip 'Door_Open' is missing!"
+- **Toggle Door**: The `ToggleDoor` method opens the door if it's closed and the required components are present.
+- **Animation Integration**: Requires the door GameObject to have an Animation component with "Door_Open" animation.
+
+#### Usage:
+1. Attach this script to a door GameObject.
+2. Ensure the GameObject has an Animation component with "Door_Open" animation clip.
+3. To open the door, ensure it's closed and call `ToggleDoor`.
+
+This implementation ensures a streamlined door interaction, enhancing the game's user experience.
 
 ### Cube Sequence Checker and Puzzle Logic (by Jun Huang - JH)
 - **Script Location**: `Assets\Scripts\CubeSequenceChecker.cs`
@@ -54,7 +68,7 @@
     - Hints are displayed centrally on the screen with an adjusted font size and with horizontal stretching to ensure readability.
 
 3. **Door Opening Mechanism Integration**:
-    - The script is directly connected to a `DoorOpenController` (presumably implemented by Zifeng Zhang - ZZ).
+    - The script is directly connected to a `DoorOpenController`.
     - Once the player completes the cube sequence correctly, the linked door is triggered to open, indicating the puzzle's successful completion.
 
 4. **Code Quality and Structure**:
@@ -68,6 +82,7 @@
 - Abdulrahman Althobaiti (AA) - Author of the AI Agent Chase and HEROPLAYER Movement Prediction 
 - Zifeng Zhang (ZZ) - Author of the Escape Rooms and Door Opening Mechanism
 - Jun Huang (JH) - Author of the Cube Sequence Checker and Puzzle Logic
+- The game including codes are hosted in Gatech Github [^3].
 
 Thank you for playing Ghost Escape: Haunted Mansion game alpha presented by team Digimon!
 
@@ -79,5 +94,6 @@ Thank you for playing Ghost Escape: Haunted Mansion game alpha presented by team
 
 1. https://assetstore.unity.com/packages/templates/systems/horror-fps-kit-82643
 2. https://assetstore.unity.com/packages/3d/characters/creatures/ghost-low-poly-199498
+3. https://github.gatech.edu/jhuang709/vgd-2023fall-digimon
 
 It is important to note that our project's scope does not involve incorporating the storyline provided in the horror kit. Instead, our intention is to solely leverage the assets such as rooms, lighting, carpets, and other elements. We are committed to developing our own set of game rules by extensively coding them ourselves. Furthermore, we created custom animations and introduced numerous new elements to the project.
