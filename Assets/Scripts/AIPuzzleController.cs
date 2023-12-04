@@ -7,8 +7,8 @@ public class AIPuzzleController : MonoBehaviour
     public Transform pointB; // Position near the blue sphere
     public GameObject heroPlayer; // The HEROPLAYER GameObject
     public AnimationClip doorOpenClip; // Reference to the door open animation clip
+    public CelebrationController celebrationController; // Reference to the CelebrationController
     private Animation doorAnimation; // Animation component on the door
-
     public TextMeshProUGUI congratulatoryText; // TextMeshPro UI element for the message
 
     public float speed = 0.5f; // AI cube's movement speed
@@ -39,10 +39,12 @@ public class AIPuzzleController : MonoBehaviour
             doorAnimation.clip = doorOpenClip;
             doorAnimation.Play();
             doorOpened = true; // Ensure the animation is played only once
-
             // Display the congratulatory message using TextMeshPro
             congratulatoryText.text = "Congratulations, you opened all 3 doors and now you escaped!";
+            celebrationController.Celebrate();
         }
+
+        
     }
 
     void MoveAI()
