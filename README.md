@@ -87,7 +87,7 @@ This implementation ensures a streamlined door interaction, enhancing the game's
 
 ### Celebration Controller (by Jun Huang - JH)
 - **Script Location**: `Assets\Scripts\CelebrationController.cs`
-- **Functionality**: This script controls the celebration mechanics in the game. When the player opens all three doors, the script triggers a confetti effect using a ParticleSystem and displays a congratulatory message with TextMeshPro. The message is initially invisible, becoming visible only during the celebration. The script also customizes the appearance of the text, including its size, color, and visibility.
+- **Functionality**: This script controls the celebration mechanics in the game. When the player opens all three doors, the script displays a congratulatory message with TextMeshPro. The message is initially invisible, becoming visible only during the celebration. The script also customizes the appearance of the text, including its size, color, and visibility.
 
 ## Contact and Credits
 - Abdulrahman Althobaiti (AA) - Author of the AI Agent Chase and HEROPLAYER Movement Prediction 
