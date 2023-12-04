@@ -37,11 +37,9 @@
 - **Script Location**: `Assets\Scripts\PlayerSpellCasting.cs`
 - **Functionality**: This script enables the player to cast spells in the game. It is primarily designed to interact with a ghost character, presumably an AI agent. The key features include playing a spell audio clip when a spell is cast and checking the spell's effect on the ghost character within a specified range. The spell is activated by pressing the 'E' key. If the ghost is within the spell's range, it triggers a specific response in the ghost (handled by AIAgentChase2.cs script).
 
-
 #### AI Agent Chase Version 2 (by Abdulrahman Althobaiti - AA)
 - **Script Location**: `Assets\Scripts\AIAgentChase2.cs`
 - **Functionality**: This script is responsible for controlling an AI agent's behavior in the game. It uses Unity's NavMeshAgent to enable the AI agent to chase the HEROPLAYER character. Key features include initiating a chase sequence after a delay, handling player collision to execute an attack. The script also includes functionality for the AI agent to react to player spells, causing it to disappear after a specific spell is cast nd playing a disappear sound.
-
 
 ### Preparation for Escape Rooms and Door Opening Mechanism (by Zifeng Zhang - ZZ)
 - **Contributions**: 
@@ -67,7 +65,7 @@
 
 This implementation ensures a streamlined door interaction, enhancing the game's user experience.
 
-### Cube Sequence Checker and Puzzle Logic (by Jun Huang - JH)
+### Puzzle 1: Find the magic sequence (by Jun Huang - JH)
 - **Script Location**: `Assets\Scripts\CubeSequenceChecker.cs`
 1. **Cube Interaction and Sequence Checking**: 
     - The game involves a series of cubes, each identifiable by a unique number.
@@ -75,27 +73,26 @@ This implementation ensures a streamlined door interaction, enhancing the game's
     - When the player is within a certain distance (`detectionDistance`) from a cube, the script checks if the cube is part of the target sequence.
     - Correct interactions temporarily change the cube's color to red, providing visual feedback.
     - Upon successfully completing the sequence, all cubes in the target sequence change their color to green, serving as a success indicator.
-
-2. **Dynamic Hints System**:
     - The player is welcomed with an initial hint displayed on the screen: "Welcome, 10 boxes in the room, figure out what boxes are important for solving the puzzle". This message stays visible for 3 seconds.
     - After 30 seconds, if the player has not progressed, a second hint appears: "Now you might have noticed that four boxes are related to the game, now please visit them again in a sequence. Think about the course code of video game design, it is CS-6 what?" This hint also remains visible for 5 seconds, guiding the player towards the puzzle solution.
-    - Hints are displayed centrally on the screen with an adjusted font size and with horizontal stretching to ensure readability.
-
-3. **Door Opening Mechanism Integration**:
     - The script is directly connected to a `DoorOpenController`.
-    - Once the player completes the cube sequence correctly, the linked door is triggered to open, indicating the puzzle's successful completion.
 
-4. **Code Quality and Structure**:
-    - The script is well-structured with separate methods handling specific functionalities, such as `ChangeColorTemporarily`, `ShowHint`, and `CheckSequence`.
-    - Extensive use of Coroutines allows for timed events and animations, contributing to the dynamic nature of the puzzle and improving player experience.
-    - The code includes error handling and validations, ensuring robustness.
+### Puzzle 2: Push the GT ball (by Jun Huang - JH)
+- **Script Location**: `Assets\Scripts\DoorOpenController2.cs`
+- **Functionality**: This script manages the door opening mechanism based on the proximity of Ball1 (Same golden color as the GT logo!) to the door. It checks if Ball1 is within a specified distance (`openDistance`) and then toggles the door open or closed. It includes error logging for missing components and animation clips, providing a robust and user-friendly experience for game developers.
 
-- **Usage**: Attach this script to an empty GameObject and assign the `HEROPLAYER`, cube array, `hintText`, and `doorOpenController` in the inspector.
+### Puzzle 3: Work with AI (by Jun Huang - JH)
+- **Script Location**: `Assets\Scripts\AIPuzzleController.cs`
+- **Functionality**: The AI Agent in the game, controlled by the `AIPuzzleController.cs` script, exhibits dynamic behavior that plays a crucial role in the game's puzzle mechanics. The agent alternates between two points - pointA near a red sphere and pointB near a blue sphere - with its movement governed by a state machine featuring states such as RedSphereChasing and BlueSphereChasing. The agent's proximity to these spheres is constantly evaluated, triggering their activation once within a certain distance (activationProximity). This activation changes the sphere's color to green as a visual cue. The core of the puzzle requires both the red and blue spheres to be activated, which, upon completion, triggers the opening of a door. This door opening is accompanied by an animation and a congratulatory message, signaling the player's progress. Additionally, the AI's interaction with the hero player is a vital component, as both the AI's and the player's proximity to the spheres are necessary for their activation, adding an extra layer of complexity and engagement to the puzzle-solving experience.
+
+### Celebration Controller (by Jun Huang - JH)
+- **Script Location**: `Assets\Scripts\CelebrationController.cs`
+- **Functionality**: This script controls the celebration mechanics in the game. When the player opens all three doors, the script triggers a confetti effect using a ParticleSystem and displays a congratulatory message with TextMeshPro. The message is initially invisible, becoming visible only during the celebration. The script also customizes the appearance of the text, including its size, color, and visibility.
 
 ## Contact and Credits
 - Abdulrahman Althobaiti (AA) - Author of the AI Agent Chase and HEROPLAYER Movement Prediction 
 - Zifeng Zhang (ZZ) - Author of the Escape Rooms and Door Opening Mechanism
-- Jun Huang (JH) - Author of the Cube Sequence Checker and Puzzle Logic
+- Jun Huang (JH) - Author of the 3 puzzles: `Level 1: Find the magic sequence`, `Level 2: Push the GT ball` and `Level 3: Work with AI`
 - The game including codes are hosted in Gatech Github [^3].
 
 Thank you for playing Ghost Escape: Haunted Mansion game alpha presented by team Digimon!
