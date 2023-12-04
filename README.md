@@ -29,6 +29,20 @@
 - **Script Location**: `Assets\Scripts\VelocityReporter.cs` (attached to HEROPLAYER)
 - **Functionality**: Predicts the future position of the HEROPLAYER based on its current position and velocity, allowing the AI agent to adjust its course dynamically.
 
+### Player Health Management (by Abdulrahman Althobaiti - AA)
+- **Script Location**: `Assets\Scripts\PlayerHealth.cs`
+- **Functionality**: This script manages the player's health in the game. It includes features such as updating health UI, playing damage sound effects, handling player death, and providing gameplay hints. The script uses Unity's UI Text for displaying health and messages, and incorporates audio and camera manipulation to enhance the death sequence. The player's health is reduced upon taking damage, and various UI elements are activated or deactivated based on the health status.
+
+### Player Spell Casting (by Abdulrahman Althobaiti - AA)
+- **Script Location**: `Assets\Scripts\PlayerSpellCasting.cs`
+- **Functionality**: This script enables the player to cast spells in the game. It is primarily designed to interact with a ghost character, presumably an AI agent. The key features include playing a spell audio clip when a spell is cast and checking the spell's effect on the ghost character within a specified range. The spell is activated by pressing the 'E' key. If the ghost is within the spell's range, it triggers a specific response in the ghost (handled by AIAgentChase2.cs script).
+
+
+#### AI Agent Chase Version 2 (by Abdulrahman Althobaiti - AA)
+- **Script Location**: `Assets\Scripts\AIAgentChase2.cs`
+- **Functionality**: This script is responsible for controlling an AI agent's behavior in the game. It uses Unity's NavMeshAgent to enable the AI agent to chase the HEROPLAYER character. Key features include initiating a chase sequence after a delay, handling player collision to execute an attack. The script also includes functionality for the AI agent to react to player spells, causing it to disappear after a specific spell is cast nd playing a disappear sound.
+
+
 ### Preparation for Escape Rooms and Door Opening Mechanism (by Zifeng Zhang - ZZ)
 - **Contributions**: 
   - Created rooms for escape.
